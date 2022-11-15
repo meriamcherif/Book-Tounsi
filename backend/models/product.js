@@ -88,15 +88,16 @@ const productSchema = new mongoose.Schema({
             }
         }
     ],
+
     user: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'User',
-        required: true
+       type: mongoose.Schema.ObjectId,
+       ref:'User',
+       required:true
     },
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    } 
 })
 
 export default mongoose.model('Product', productSchema);
