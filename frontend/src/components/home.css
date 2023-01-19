@@ -1,0 +1,15 @@
+.home{
+    height:calc(150hv);
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(rgba(255,255,255,0.5),rgba(255, 255, 255, 0.918)),url('./bureau.png');    
+    background-size: cover;
+
+
+}
+.products{
+    margin-top:30px;
+}

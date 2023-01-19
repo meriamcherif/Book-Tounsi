@@ -1,0 +1,11 @@
+.registerclass{
+    height:calc(100vh - 50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5)),url('./bureau.png');    
+    background-size: cover;
+
+
+
+}

@@ -21,19 +21,22 @@ const newProduct= async (req,res,next)=>{
 }
 // Get all products 
 const getProducts = async (req,res)=>{
-    const resPerPage = 4;
-    const productCount=await Product.countDocuments();
+    const resPerPage = 8;
+    const productsCount=await Product.countDocuments();
     const apiFeatures= new APIFeatures(Product.find(),req.query)
                .search()
                .pagination(resPerPage)
     let products=await apiFeatures.query;
     //console.log(products)
-    res.status(200).json({
-        success:true,
-        count:products.length, 
-        productCount,
-        products        
-     }) 
+    setTimeout(()=>{
+        res.status(200).json({
+            success: true,
+            productsCount,
+            resPerPage,
+            products
+        })
+    },2000)
+    
 } 
 //Get single product details => /api/v1/product/:id
 const getSingleProduct=async(req,res,next)=>{

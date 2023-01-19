@@ -1,5 +1,6 @@
 import User from '../models/user.js';
 import mongoose from 'mongoose';
+import cloudinary from 'cloudinary';
 //import ErrorHandler from '../utils/errorHandler.js';
 //import catchAsyncError from '../middlewares/catchAsyncErrors.js'
 import sendToken from '../utils/jwtToken.js';
@@ -7,6 +8,11 @@ import sendEmail from '../utils/sendEmail.js';
 //register a user => /api/v1/register
 
 const registerUser= async(req,res,next)=>{
+    const result= await cloudinary.v2.uploader.upload(req.body.avatar,{
+        folder: 'avatars',
+        width: 150,
+        crop:"scale"
+    })
     const { name, email, password}=req.body;
     try{
         const user=await User.create({
@@ -14,8 +20,8 @@ const registerUser= async(req,res,next)=>{
             email,
             password,
             avatar:{
-                public_id: 'download_qzakhe',
-                url: 'https://res.cloudinary.com/dbj5bqwq3/image/upload/v1666096660/avatars/download_qzakhe.png' 
+                public_id: result.public_id,
+                url: result.secure_url
             }
                 }) 
 

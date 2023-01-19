@@ -4,7 +4,7 @@ import   {isAuthenticatedUser,authorizeRoles} from '../middlewares/auth.js';
 const router= Router();
 
 
-router.get('/products',isAuthenticatedUser,getProducts);
+router.get('/products',getProducts);
 router.get('/product/:id',getSingleProduct);
 
 

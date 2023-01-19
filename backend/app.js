@@ -4,17 +4,27 @@ import products from "./routes/product.js";
 import auth from './routes/auth.js';
 import order from './routes/order.js'
 import bodyParser from 'body-parser';
+import cloudinary from 'cloudinary';
+import fileUpload from 'express-fileupload';
 import cookieParser from 'cookie-parser';
 import errorMiddleware from './middlewares/errors.js'
 import * as dotenv from 'dotenv' 
 import  'dotenv/config'
+import cors from 'cors';
 dotenv.config({path :'./config.env'})
 
 const app= express();
 app.use(cookieParser())
-
-app.use(bodyParser.urlencoded({ extended : false }))
+app.use(fileUpload())
+app.use(cors())
+app.use(bodyParser.urlencoded({ extended : true }))
 app.use(bodyParser.json())
+//Setting up cloudinary config
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+})
 app.use('/api/v1',products)
 app.use('/api/v1',auth)
 app.use('/api/v1',order)
